@@ -32,7 +32,7 @@
 
       <main>
         <section class="text-section first-section">
-          <div class="container narrow">
+          <div class="container narrow prose">
             <h2>TL;DR</h2>
             <p>
               We introduce <strong>Spectral Tension</strong> to diagnose whether temporal attention is operating in a balanced
@@ -71,20 +71,22 @@
           </div>
         </section>
 
-        <section class="figure-section">
-          <div class="container narrow">
-            <h2>Concept</h2>
-            <figure class="figure-card">
-              <img src="assets/figs/concept.png" alt="Conceptual view of Temporal State Transport" />
-              <figcaption>
+        <section class="figure-section concept-section">
+          <div class="container wide">
+            <div class="figure-section-head">
+              <h2>Concept</h2>
+              <p>
                 Good video generation stays between two opposite failures: fragmented transport and over-mixing hotspots.
-              </figcaption>
+              </p>
+            </div>
+            <figure class="figure-card figure-wide">
+              <img src="assets/figs/concept.png" alt="Conceptual view of Temporal State Transport" />
             </figure>
           </div>
         </section>
 
         <section class="text-section">
-          <div class="container narrow">
+          <div class="container narrow prose">
             <h2>Abstract</h2>
             <p>
               Reliable video generation requires more than high-quality frames: a model must transport visual states such as
@@ -102,16 +104,13 @@
           </div>
         </section>
 
-        <section class="claim-section claim-a" id="claim-a">
+        <section class="claim-section" id="detail-realism">
           <div class="container wide">
             <div class="claim-header">
-              <div>
-                <p class="claim-label claim-label-a">Claim A</p>
-                <h2>Details that feel more true to the real world.</h2>
-              </div>
+              <h2>More faithful detail and richer real-world structure.</h2>
               <p class="claim-description">
-                These examples show cases where our method proactively fills in details, improves appearance realism, and makes
-                scene structure feel more stable and believable over time.
+                These examples emphasize appearance realism, fine structure, and stable scene detail that remain more convincing
+                over time.
               </p>
             </div>
             <div id="claim-a-grid" class="video-grid two-column"></div>
@@ -120,23 +119,22 @@
 
         <section class="figure-section compact-figure">
           <div class="container narrow">
-            <h2>Human evaluation</h2>
+            <div class="figure-section-head centered">
+              <h2>Human evaluation</h2>
+              <p>
+                Human evaluation shows consistent gains in motion naturalness, imaging quality, and prompt adherence.
+              </p>
+            </div>
             <figure class="figure-card light-card">
               <img src="assets/figs/human_eval.png" alt="Human evaluation results" />
-              <figcaption>
-                Human evaluation shows consistent gains in motion naturalness, imaging quality, and prompt adherence.
-              </figcaption>
             </figure>
           </div>
         </section>
 
-        <section class="claim-section claim-b" id="claim-b">
+        <section class="claim-section soft-band" id="physical-correction">
           <div class="container wide">
             <div class="claim-header">
-              <div>
-                <p class="claim-label claim-label-b">Claim B</p>
-                <h2>Physical structures and motion logic corrected toward plausibility.</h2>
-              </div>
+              <h2>More plausible physical structures and motion logic.</h2>
               <p class="claim-description">
                 These examples emphasize dynamic scenes where the original model drifts into implausible physical behavior and
                 where our method restores more coherent temporal structure.
@@ -150,18 +148,14 @@
 
     <template id="video-card-template">
       <article class="video-card">
-        <div class="video-card-top">
-          <span class="sample-index"></span>
-          <span class="claim-tag"></span>
-        </div>
         <p class="prompt"></p>
         <div class="compare-grid">
           <div class="compare-cell">
-            <div class="compare-title">Original</div>
+            <div class="compare-title">Original model</div>
             <video playsinline muted loop preload="metadata" controls></video>
           </div>
           <div class="compare-cell">
-            <div class="compare-title ours">Ours</div>
+            <div class="compare-title ours">With ours</div>
             <video playsinline muted loop preload="metadata" controls></video>
           </div>
         </div>
