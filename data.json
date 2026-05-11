@@ -1,0 +1,104 @@
+[
+  {
+    "idx": 1,
+    "prompt": "A baker in a blue apron kneads dough on a flour-covered counter while morning sunlight enters through a bakery window, loose flour dust moves in the air, realistic video",
+    "slug": "sample-01",
+    "claim": "a"
+  },
+  {
+    "idx": 2,
+    "prompt": "A brown dog jumps to catch a red frisbee in a green park, its owner stands nearby and trees sway lightly in the background, realistic video",
+    "slug": "sample-02",
+    "claim": "b"
+  },
+  {
+    "idx": 3,
+    "prompt": "A competitive diver leaps from a springboard into a bright indoor pool, the body rotates cleanly and water splashes upward after entry, realistic sports video",
+    "slug": "sample-03",
+    "claim": "b"
+  },
+  {
+    "idx": 4,
+    "prompt": "A contemporary dancer in a flowing black costume leaps across a dark stage as white confetti falls through a moving spotlight, realistic performance video",
+    "slug": "sample-04",
+    "claim": "b"
+  },
+  {
+    "idx": 5,
+    "prompt": "A fiery phoenix circles above a volcanic crater while glowing ash drifts upward and lava pulses below, epic fantasy video",
+    "slug": "sample-05",
+    "claim": "b"
+  },
+  {
+    "idx": 6,
+    "prompt": "A girl with a straw hat plays with a boy on a sunny beach, building sandcastles with colorful toys, waves moving gently behind them, realistic video",
+    "slug": "sample-06",
+    "claim": "a"
+  },
+  {
+    "idx": 7,
+    "prompt": "A long silver dragon coils around an ancient stone bridge above a river canyon, fog drifts below while its whiskers and mane move in the wind, epic fantasy video",
+    "slug": "sample-07",
+    "claim": "b"
+  },
+  {
+    "idx": 8,
+    "prompt": "A mountain climber ascends a blue ice wall using two ice axes, snow dust falls from each strike and clouds drift below, realistic alpine video",
+    "slug": "sample-08",
+    "claim": "b"
+  },
+  {
+    "idx": 9,
+    "prompt": "A robotic arm assembles a glowing circuit board on a factory table, tiny sparks appear at contact points and conveyor belts move in the background, industrial sci-fi video",
+    "slug": "sample-09",
+    "claim": "a"
+  },
+  {
+    "idx": 10,
+    "prompt": "A scientist wearing black gloves rotates a floating holographic molecule in a dark lab, blue particles orbit around it and glass screens reflect softly, sci-fi lab video",
+    "slug": "sample-10",
+    "claim": "b"
+  },
+  {
+    "idx": 11,
+    "prompt": "A sea turtle swims past coral reefs while the camera follows from the side, small fish scatter and light caustics ripple across the water, underwater realistic video",
+    "slug": "sample-11",
+    "claim": "a"
+  },
+  {
+    "idx": 12,
+    "prompt": "A silver space probe flies past the rings of a giant planet while blue engine light pulses and small debris glitters nearby, science fiction cinematic video",
+    "slug": "sample-12",
+    "claim": "a"
+  },
+  {
+    "idx": 13,
+    "prompt": "A small blue bird lands on the edge of a garden fountain, water ripples below and flowers move gently in the breeze, realistic video",
+    "slug": "sample-13",
+    "claim": "a"
+  },
+  {
+    "idx": 14,
+    "prompt": "A teenage girl on roller skates glides across a glossy hotel lobby, spinning once while her red scarf trails behind her, reflections sliding across the polished floor, realistic video",
+    "slug": "sample-14",
+    "claim": "b"
+  },
+  {
+    "idx": 15,
+    "prompt": "A violinist performs alone on a dim stage under a warm spotlight, bowing rapidly while the black dress and loose hair move subtly, realistic concert video",
+    "slug": "sample-15",
+    "claim": "a"
+  },
+  {
+    "idx": 16,
+    "prompt": "An anime biker in a red helmet speeds through a neon tunnel, colored reflections streak across the motorcycle and the tunnel walls pulse with light, anime action video",
+    "slug": "sample-16",
+    "claim": "a"
+  },
+  {
+    "idx": 17,
+    "prompt": "An anime swordsman in white swings a glowing blade through a bamboo forest in light rain, droplets scatter and loose sleeves trail behind, high-quality anime video",
+    "slug": "sample-17",
+    "claim": "b"
+  }
+]
