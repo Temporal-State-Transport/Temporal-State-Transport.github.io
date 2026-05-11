@@ -17,112 +17,151 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <div class="container header-inner">
-        <div class="brand">Temporal State Transport</div>
-        <nav class="nav">
-          <a href="#overview">Overview</a>
-          <a href="#claim-a">Claim A</a>
-          <a href="#claim-b">Claim B</a>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="container hero-inner">
-          <p class="kicker">ICML 2026 Video Generation Workshop</p>
+    <div class="page">
+      <header class="hero-block">
+        <div class="container narrow">
+          <p class="eyebrow">ICML 2026 Video Generation Workshop</p>
           <h1>Temporal State Transport in Video Generation</h1>
           <p class="subtitle">Diagnosing and Correcting Spectral Imbalance</p>
-          <p class="summary">
-            Reliable video generation requires more than high-quality individual frames. A model must transport identity,
-            scene layout, motion, and fine details across time without drifting into fragmented transport or over-mixing.
+          <p class="lede">
+            Reliable video generation requires more than strong individual frames. A model must transport identity, scene
+            layout, motion, and fine details across time without drifting into fragmented transport or over-mixing.
           </p>
         </div>
-      </section>
+      </header>
 
-      <section id="overview" class="section section-intro">
-        <div class="container stack-lg">
-          <div class="section-title-block">
-            <p class="section-label">Overview</p>
-            <h2>A clean diagnosis of temporal failure, and a lightweight way to fix it.</h2>
-          </div>
-
-          <div class="text-block">
+      <main>
+        <section class="text-section first-section">
+          <div class="container narrow">
+            <h2>TL;DR</h2>
             <p>
-              We study video generation through the perspective of <strong>Temporal State Transport</strong>. Existing training-free
-              methods often strengthen cross-frame interaction, but they do not reveal whether temporal attention stays in a
-              healthy transport regime. Our view is that coherent video emerges when temporal attention is balanced: neither
-              too fragmented nor excessively mixed.
+              We introduce <strong>Spectral Tension</strong> to diagnose whether temporal attention is operating in a balanced
+              transport regime, and <strong>Spectral Transport Homeostasis</strong> to selectively correct pathological states at
+              inference time. The result is improved temporal coherence, stronger visual quality, and more physically plausible
+              videos without finetuning.
+            </p>
+          </div>
+        </section>
+
+        <section class="overview-band">
+          <div class="container wide overview-grid">
+            <div class="overview-copy">
+              <h3>Motivation</h3>
+              <p>
+                Existing training-free enhancement methods usually strengthen cross-frame interaction, but they do not reveal
+                whether temporal interactions stay healthy. We instead view temporal attention as a transport operator whose
+                balance determines whether a video remains coherent over time.
+              </p>
+            </div>
+            <div class="overview-copy">
+              <h3>Diagnosis</h3>
+              <p>
+                Spectral Tension compares local attention diffuseness with global spectral diversity. Negative values imply
+                fragmented transport, positive values imply over-mixing hotspots, and values near zero indicate a better-balanced
+                temporal state.
+              </p>
+            </div>
+            <div class="overview-copy">
+              <h3>Correction</h3>
+              <p>
+                Spectral Transport Homeostasis is a training-free query-temperature regulator. It sharpens over-mixed states,
+                softens fragmented ones, and preserves already balanced transport as much as possible.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="figure-section">
+          <div class="container narrow">
+            <h2>Concept</h2>
+            <figure class="figure-card">
+              <img src="assets/figs/concept.png" alt="Conceptual view of Temporal State Transport" />
+              <figcaption>
+                Good video generation stays between two opposite failures: fragmented transport and over-mixing hotspots.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="text-section">
+          <div class="container narrow">
+            <h2>Abstract</h2>
+            <p>
+              Reliable video generation requires more than high-quality frames: a model must transport visual states such as
+              identity, scene layout, motion, and fine details across time. Existing training-free methods mainly strengthen
+              cross-frame attention or analyze local attention entropy, but these views do not reveal whether temporal
+              interactions stay in a healthy transport regime. In this work, we study video generation through the perspective
+              of Temporal State Transport.
             </p>
             <p>
-              To diagnose this structure, we introduce <strong>Spectral Tension</strong>, a signed quantity comparing local attention
-              diffuseness with global spectral diversity. Based on that diagnosis, we propose <strong>Spectral Transport Homeostasis</strong>,
-              a training-free query-temperature regulator that selectively corrects pathological temporal states while largely
-              preserving balanced ones.
+              We introduce Spectral Tension, a signed diagnostic that compares local attention diffuseness with global spectral
+              diversity, and use it to identify two opposite temporal failures: fragmented transport and over-mixing hotspots.
+              Based on this diagnosis, we propose Spectral Transport Homeostasis, a training-free regulator that softly corrects
+              pathological temporal states while largely preserving balanced ones.
             </p>
           </div>
+        </section>
 
-          <figure class="figure-block large-figure">
-            <img src="assets/figs/concept.png" alt="Conceptual figure of Temporal State Transport" />
-            <figcaption>
-              A conceptual view of balanced temporal transport: good video generation stays between fragmented transport and
-              over-mixing hotspots.
-            </figcaption>
-          </figure>
-
-          <figure class="figure-block narrow-figure">
-            <img src="assets/figs/human_eval.png" alt="Human evaluation figure" />
-            <figcaption>
-              Human evaluation shows clear gains in motion naturalness, imaging quality, and prompt adherence.
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section id="claim-a" class="section">
-        <div class="container stack-lg">
-          <div class="section-title-block">
-            <p class="section-label">Claim A</p>
-            <h2>Our approach proactively fills in details that are more true to the real world.</h2>
-            <p class="section-note">
-              These cases focus on fine structure, appearance realism, and stable scene detail. The videos are grouped here
-              according to the indices you specified.
-            </p>
+        <section class="claim-section claim-a" id="claim-a">
+          <div class="container wide">
+            <div class="claim-header">
+              <div>
+                <p class="claim-label claim-label-a">Claim A</p>
+                <h2>Details that feel more true to the real world.</h2>
+              </div>
+              <p class="claim-description">
+                These examples show cases where our method proactively fills in details, improves appearance realism, and makes
+                scene structure feel more stable and believable over time.
+              </p>
+            </div>
+            <div id="claim-a-grid" class="video-grid two-column"></div>
           </div>
-          <div id="claim-a-grid" class="feed"></div>
-        </div>
-      </section>
+        </section>
 
-      <section id="claim-b" class="section section-alt">
-        <div class="container stack-lg">
-          <div class="section-title-block">
-            <p class="section-label">Claim B</p>
-            <h2>Our approach actively corrects incorrect physical structures and motion logic.</h2>
-            <p class="section-note">
-              These cases emphasize dynamic events where the original model exhibits implausible physical structure or motion,
-              while our method restores more coherent temporal behavior.
-            </p>
+        <section class="figure-section compact-figure">
+          <div class="container narrow">
+            <h2>Human evaluation</h2>
+            <figure class="figure-card light-card">
+              <img src="assets/figs/human_eval.png" alt="Human evaluation results" />
+              <figcaption>
+                Human evaluation shows consistent gains in motion naturalness, imaging quality, and prompt adherence.
+              </figcaption>
+            </figure>
           </div>
-          <div id="claim-b-grid" class="feed"></div>
-        </div>
-      </section>
-    </main>
+        </section>
+
+        <section class="claim-section claim-b" id="claim-b">
+          <div class="container wide">
+            <div class="claim-header">
+              <div>
+                <p class="claim-label claim-label-b">Claim B</p>
+                <h2>Physical structures and motion logic corrected toward plausibility.</h2>
+              </div>
+              <p class="claim-description">
+                These examples emphasize dynamic scenes where the original model drifts into implausible physical behavior and
+                where our method restores more coherent temporal structure.
+              </p>
+            </div>
+            <div id="claim-b-grid" class="video-grid two-column"></div>
+          </div>
+        </section>
+      </main>
+    </div>
 
     <template id="video-card-template">
-      <article class="comparison-card">
-        <div class="comparison-meta">
+      <article class="video-card">
+        <div class="video-card-top">
           <span class="sample-index"></span>
           <span class="claim-tag"></span>
         </div>
         <p class="prompt"></p>
-        <div class="video-row">
-          <div class="video-block">
-            <div class="video-title">Original model</div>
+        <div class="compare-grid">
+          <div class="compare-cell">
+            <div class="compare-title">Original</div>
             <video playsinline muted loop preload="metadata" controls></video>
           </div>
-          <div class="video-block">
-            <div class="video-title emphasis">With ours</div>
+          <div class="compare-cell">
+            <div class="compare-title ours">Ours</div>
             <video playsinline muted loop preload="metadata" controls></video>
           </div>
         </div>
