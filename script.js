@@ -10,7 +10,6 @@ async function init() {
     .filter((item) => item.idx !== 4)
     .forEach((item) => {
       const node = template.content.cloneNode(true);
-      const card = node.querySelector('.video-card');
       const prompt = node.querySelector('.prompt');
       const [oriVideo, oursVideo] = node.querySelectorAll('video');
       const pair = [oriVideo, oursVideo];
@@ -19,47 +18,71 @@ async function init() {
       oriVideo.src = `videos/${item.slug}/ori.mp4`;
       oursVideo.src = `videos/${item.slug}/ours.mp4`;
 
-      let syncing = false;
-
-      function syncState(source, action) {
-        if (syncing) return;
-        syncing = true;
+      function syncTime(source) {
         pair.forEach((video) => {
-          if (video === source) return;
-          if (action === 'play') {
+          if (video !== source && Math.abs(video.currentTime - source.currentTime) > 0.12) {
             video.currentTime = source.currentTime;
-            video.play().catch(() => {});
-          }
-          if (action === 'pause') {
-            video.currentTime = source.currentTime;
-            video.pause();
-          }
-          if (action === 'seeking') {
-            video.currentTime = source.currentTime;
-          }
-          if (action === 'ratechange') {
-            video.playbackRate = source.playbackRate;
-          }
-          if (action === 'ended') {
-            video.currentTime = 0;
-            video.pause();
           }
         });
-        syncing = false;
+      }
+
+      async function playPair(source) {
+        const other = source === oriVideo ? oursVideo : oriVideo;
+        if (other.readyState < 3) {
+          return;
+        }
+        const t = source.currentTime;
+        if (Math.abs(other.currentTime - t) > 0.12) {
+          other.currentTime = t;
+        }
+        other.playbackRate = source.playbackRate;
+        await Promise.allSettled([source.play().catch(() => {}), other.play().catch(() => {})]);
+      }
+
+      function pausePair(source) {
+        const other = source === oriVideo ? oursVideo : oriVideo;
+        if (!other.paused) {
+          other.pause();
+        }
+        syncTime(source);
+      }
+
+      function seekPair(source) {
+        syncTime(source);
+      }
+
+      function ratePair(source) {
+        const other = source === oriVideo ? oursVideo : oriVideo;
+        other.playbackRate = source.playbackRate;
+      }
+
+      function endPair(source) {
+        const other = source === oriVideo ? oursVideo : oriVideo;
+        other.pause();
+        other.currentTime = 0;
       }
 
       pair.forEach((video) => {
-        video.addEventListener('play', () => syncState(video, 'play'));
-        video.addEventListener('pause', () => syncState(video, 'pause'));
-        video.addEventListener('seeking', () => syncState(video, 'seeking'));
-        video.addEventListener('ratechange', () => syncState(video, 'ratechange'));
-        video.addEventListener('ended', () => syncState(video, 'ended'));
-      });
-
-      card.addEventListener('mouseenter', () => {
-        const t = Math.max(oriVideo.currentTime, oursVideo.currentTime);
-        pair.forEach((video) => {
-          video.currentTime = t;
+        video.addEventListener('play', () => {
+          playPair(video);
+        });
+        video.addEventListener('pause', () => {
+          pausePair(video);
+        });
+        video.addEventListener('seeking', () => {
+          seekPair(video);
+        });
+        video.addEventListener('ratechange', () => {
+          ratePair(video);
+        });
+        video.addEventListener('ended', () => {
+          endPair(video);
+        });
+        video.addEventListener('loadeddata', () => {
+          if (!pair.some((v) => v.readyState < 3) && pair.some((v) => !v.paused)) {
+            const leader = pair.find((v) => !v.paused) || video;
+            playPair(leader);
+          }
         });
       });
 
