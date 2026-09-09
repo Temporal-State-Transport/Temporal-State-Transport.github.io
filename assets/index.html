@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temporal State Transport in Video Generation</title>
+    <meta
+      name="description"
+      content="Project page for Temporal State Transport in Video Generation: Diagnosing and Correcting Spectral Imbalance."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero-block">
+        <div class="container narrow">
+          <p class="eyebrow">ICML 2026 Video Generation Workshop</p>
+          <h1>Temporal State Transport in Video Generation</h1>
+          <p class="subtitle">Diagnosing and Correcting Spectral Imbalance</p>
+          <p class="lede">
+            Reliable video generation requires more than strong individual frames. A model must transport identity, scene
+            layout, motion, and fine details across time without drifting into fragmented transport or over-mixing.
+          </p>
+        </div>
+      </header>
+
+      <main>
+        <section class="text-section first-section">
+          <div class="container narrow prose">
+            <h2>TL;DR</h2>
+            <p>
+              We introduce <strong>Spectral Tension</strong> to diagnose whether temporal attention is operating in a balanced
+              transport regime, and <strong>Spectral Transport Homeostasis</strong> to selectively correct pathological states at
+              inference time. The result is improved temporal coherence, stronger visual quality, and more physically plausible
+              videos without finetuning.
+            </p>
+          </div>
+        </section>
+
+        <section class="overview-band">
+          <div class="container wide overview-grid">
+            <div class="overview-copy">
+              <h3>Motivation</h3>
+              <p>
+                Existing training-free enhancement methods usually strengthen cross-frame interaction, but they do not reveal
+                whether temporal interactions stay healthy. We instead view temporal attention as a transport operator whose
+                balance determines whether a video remains coherent over time.
+              </p>
+            </div>
+            <div class="overview-copy">
+              <h3>Diagnosis</h3>
+              <p>
+                Spectral Tension compares local attention diffuseness with global spectral diversity. Negative values imply
+                fragmented transport, positive values imply over-mixing hotspots, and values near zero indicate a better-balanced
+                temporal state.
+              </p>
+            </div>
+            <div class="overview-copy">
+              <h3>Correction</h3>
+              <p>
+                Spectral Transport Homeostasis is a training-free query-temperature regulator. It sharpens over-mixed states,
+                softens fragmented ones, and preserves already balanced transport as much as possible.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="text-section">
+          <div class="container narrow prose">
+            <h2>Abstract</h2>
+            <p>
+              Reliable video generation requires more than high-quality frames: a model must transport visual states such as
+              identity, scene layout, motion, and fine details across time. Existing training-free methods mainly strengthen
+              cross-frame attention or analyze local attention entropy, but these views do not reveal whether temporal
+              interactions stay in a healthy transport regime. In this work, we study video generation through the perspective
+              of Temporal State Transport.
+            </p>
+            <p>
+              We introduce Spectral Tension, a signed diagnostic that compares local attention diffuseness with global spectral
+              diversity, and use it to identify two opposite temporal failures: fragmented transport and over-mixing hotspots.
+              Based on this diagnosis, we propose Spectral Transport Homeostasis, a training-free regulator that softly corrects
+              pathological temporal states while largely preserving balanced ones.
+            </p>
+          </div>
+        </section>
+
+        <section class="claim-section" id="detail-realism">
+          <div class="container wide">
+            <div class="claim-header">
+              <h2>More faithful detail and richer real-world structure.</h2>
+              <p class="claim-description">
+                These examples emphasize appearance realism, fine structure, and stable scene detail that remain more convincing
+                over time.
+              </p>
+            </div>
+            <div id="claim-a-grid" class="video-grid two-column"></div>
+          </div>
+        </section>
+
+        <section class="claim-section soft-band" id="physical-correction">
+          <div class="container wide">
+            <div class="claim-header">
+              <h2>More plausible physical structures and motion logic.</h2>
+              <p class="claim-description">
+                These examples emphasize dynamic scenes where the original model drifts into implausible physical behavior and
+                where our method restores more coherent temporal structure.
+              </p>
+            </div>
+            <div id="claim-b-grid" class="video-grid two-column"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="video-card-template">
+      <article class="video-card">
+        <p class="prompt"></p>
+        <div class="compare-grid">
+          <div class="compare-cell">
+            <div class="compare-title">Original model</div>
+            <video playsinline muted loop preload="metadata" controls></video>
+          </div>
+          <div class="compare-cell">
+            <div class="compare-title ours">With ours</div>
+            <video playsinline muted loop preload="metadata" controls></video>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>

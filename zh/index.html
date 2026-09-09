@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temporal State Transport in Video Generation｜中文项目主页</title>
+    <meta
+      name="description"
+      content="Temporal State Transport in Video Generation: Diagnosing and Correcting Spectral Imbalance 中文项目主页。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="alternate" hreflang="en" href="../" />
+    <link rel="stylesheet" href="../styles.css?v=20260908-3" />
+  </head>
+  <body data-content-source="../data-zh.json?v=20260908-3" data-asset-root="..">
+    <div class="page">
+      <header class="hero-block">
+        <nav class="language-switch" aria-label="语言选择">
+          <a href="../" lang="en">EN</a>
+          <span aria-hidden="true"></span>
+          <a class="active" href="./" lang="zh-CN" aria-current="page">中文</a>
+        </nav>
+        <div class="container narrow">
+          <div class="award-showcase" aria-label="ICML 2026 F2S Workshop 最佳论文奖及口头报告">
+            <div class="award-emblem" aria-hidden="true">
+              <span class="award-spark">✦</span>
+              <span class="award-trophy">🏆</span>
+              <span class="award-spark">✦</span>
+            </div>
+            <div class="award-copy">
+              <span class="award-event">ICML 2026 · F2S Workshop</span>
+              <strong>最佳论文奖</strong>
+              <span class="award-oral"><span aria-hidden="true">🎤</span> 口头报告</span>
+            </div>
+          </div>
+          <h1>Temporal State Transport in Video Generation</h1>
+          <p class="subtitle">Diagnosing and Correcting Spectral Imbalance</p>
+          <div class="authors" aria-label="论文作者">
+            <a class="author-link primary-author" href="https://lytang63.github.io/" target="_blank" rel="noopener noreferrer">Luyao Tang</a>,
+            <span>Bingjun Luo</span>,
+            <span>DONG Yi</span>,
+            <span>Jialin Guo</span>,
+            <span>Haoning Xi</span>,
+            <a class="author-link" href="https://cchen-cc.github.io/" target="_blank" rel="noopener noreferrer">Cheng Chen</a>,
+            <span>Yizhou Yu</span>,
+            <a class="author-link" href="https://scholar.google.com/citations?user=MmUZ_AQAAAAJ" target="_blank" rel="noopener noreferrer">Chaoqi Chen</a>
+          </div>
+          <p class="venue-line">ICML 2026 Workshop on From Frames to Stories (F2S)</p>
+          <div class="project-links" aria-label="项目资源">
+            <a class="project-link" href="https://openreview.net/pdf?id=YIqjb9fi7o" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">📄</span><span>论文</span></a>
+            <a class="project-link" href="https://github.com/lytang63/temporal-state-transport" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">⌘</span><span>代码</span></a>
+            <a class="project-link" href="https://icml.cc/virtual/2026/76614" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">◈</span><span>ICML</span></a>
+            <a class="project-link" href="https://arxiv.org/abs/2609.08505" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span><span>arXiv</span></a>
+          </div>
+          <p class="lede">
+            时间注意力并非只会沿一个方向失效：它既可能变得<strong>碎片化</strong>，也可能出现<strong>过度混合</strong>。
+            TST 是一种无需训练的“先诊断、后校正”框架，通过恢复平衡的时间状态传输，在不微调模型的前提下提升时序一致性、视觉细节与物理合理性。
+          </p>
+          <div class="hero-proof" aria-label="方法核心状态">
+            <div class="proof-card fragmented"><span class="proof-icon" aria-hidden="true">🧩</span><strong>碎片化传输</strong><span>帧间联系被割裂，外观与细粒度细节随时间发生漂移。</span></div>
+            <div class="proof-card balanced"><span class="proof-icon" aria-hidden="true">⚖️</span><strong>平衡态传输</strong><span>健康状态同时保留跨帧一致性与必要的时间差异。</span></div>
+            <div class="proof-card over-mixed"><span class="proof-icon" aria-hidden="true">🌪️</span><strong>过度混合传输</strong><span>时间差异被抹平，运动与物理动态逐渐变得不合理。</span></div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="text-section first-section">
+          <div class="container narrow prose">
+            <h2>简要概述</h2>
+            <p>
+              我们提出 <strong>Spectral Tension</strong>，用于诊断时间注意力是否处于平衡的传输状态；并进一步提出
+              <strong>Spectral Transport Homeostasis</strong>，在推理阶段有选择地校正异常状态。无需任何微调，即可同时改善时序一致性、视觉质量与物理合理性。
+            </p>
+          </div>
+        </section>
+
+        <section class="core-insight-section">
+          <div class="container wide">
+            <div class="section-heading core-insight-heading">
+              <p class="section-kicker">💡 核心洞见</p>
+              <h2>时序不一致，本质上是一个平衡问题。</h2>
+              <p>
+                更多跨帧交互并不总是更好。时间注意力会沿两个相反方向失衡，因此有效的干预必须先判断失效状态，再施加方向正确的校正。
+              </p>
+            </div>
+            <div class="insight-flow" aria-label="TST 先诊断后校正流程">
+              <div class="insight-step">
+                <span class="insight-icon" aria-hidden="true">🔍</span>
+                <div><strong>Spectral Tension</strong><span>判断时间失衡的方向与严重程度。</span></div>
+              </div>
+              <span class="flow-arrow" aria-hidden="true">→</span>
+              <div class="insight-step">
+                <span class="insight-icon" aria-hidden="true">🧭</span>
+                <div><strong>带符号决策</strong><span>区分碎片化传输与过度混合热点。</span></div>
+              </div>
+              <span class="flow-arrow" aria-hidden="true">→</span>
+              <div class="insight-step">
+                <span class="insight-icon" aria-hidden="true">🩺</span>
+                <div><strong>稳态校正</strong><span>仅对异常状态进行干预，并尽可能保留已平衡的状态。</span></div>
+              </div>
+            </div>
+            <div class="keyword-row" aria-label="方法核心特性">
+              <span>⚡ 无需训练</span>
+              <span>🔌 即插即用</span>
+              <span>🎛️ 单一核心参数</span>
+              <span>🧠 层级与时间步自适应</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="overview-band">
+          <div class="container wide overview-grid">
+            <div class="overview-copy">
+              <h3>研究动机</h3>
+              <p>
+                现有无需训练的增强方法往往直接强化跨帧交互，却无法判断时间交互是否保持健康。我们将时间注意力视作状态传输算子，其平衡程度决定视频能否在时间维度保持连贯。
+              </p>
+            </div>
+            <div class="overview-copy">
+              <h3>状态诊断</h3>
+              <p>
+                Spectral Tension 比较局部注意力弥散度与全局谱多样性。负值对应碎片化传输，正值对应过度混合热点，接近零则表示更平衡的时间状态。
+              </p>
+            </div>
+            <div class="overview-copy">
+              <h3>自适应校正</h3>
+              <p>
+                Spectral Transport Homeostasis 是一种无需训练的 query-temperature 调节器：锐化过度混合状态、软化碎片化状态，同时尽可能保留已经平衡的传输。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="figure-section">
+          <div class="container narrow">
+            <figure class="insight-figure">
+              <a class="figure-link" href="../assets/figs/concept.pdf" target="_blank" rel="noopener noreferrer" aria-label="打开完整分辨率的 TST 方法示意图 PDF">
+                <img src="../assets/figs/concept-method.png" alt="TST 诊断碎片化传输与过度混合热点，并通过 Spectral Transport Homeostasis 恢复平衡的时间状态传输。" />
+              </a>
+              <figcaption>
+                <strong>核心思想。</strong>健康的时间状态传输位于两种异常状态之间。Spectral Tension 提供带符号的诊断信号，不仅判断注意力是否失衡，也指出应沿哪个方向进行校正。
+                <a class="figure-download" href="../assets/figs/concept.pdf" target="_blank" rel="noopener noreferrer">打开完整分辨率 PDF <span aria-hidden="true">↗</span></a>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="math-section">
+          <div class="container narrow">
+            <div class="section-heading math-heading">
+              <p class="section-kicker">🧮 核心公式</p>
+              <h2>从谱诊断到自适应校正</h2>
+              <p>TST 从两个互补尺度读取时间注意力，判断失衡方向，并在推理阶段施加具有层级和时间步调度的自适应校正。</p>
+            </div>
+
+            <div class="formula-grid">
+              <article class="formula-card">
+                <div class="formula-index">01</div>
+                <h3>局部弥散度</h3>
+                <div class="equation" aria-label="注意力 A 的行熵">
+                  <var>H</var><sub>row</sub>(<var>A</var>) = − avg<sub>i</sub> &Sigma;<sub>j</sub> <var>A</var><sub>ij</sub> log(<var>A</var><sub>ij</sub> + ε)
+                </div>
+                <p>行熵刻画每一帧如何在时间维度分配注意力，以及局部注意力分布的弥散程度。</p>
+              </article>
+
+              <article class="formula-card">
+                <div class="formula-index">02</div>
+                <h3>全局谱多样性</h3>
+                <div class="equation" aria-label="rho 的 Von Neumann 熵">
+                  <var>H</var><sub>vN</sub>(ρ) = − &Sigma;<sub>k</sub> λ̃<sub>k</sub> log(λ̃<sub>k</sub> + ε)
+                </div>
+                <p>Von Neumann 熵概括归一化注意力 Gram 矩阵的特征值分布，从全局角度衡量谱多样性。</p>
+              </article>
+
+              <article class="formula-card formula-card-wide tension-card">
+                <div class="formula-index">03</div>
+                <h3>Spectral Tension：带符号的诊断</h3>
+                <div class="equation equation-primary" aria-label="Spectral Tension 等于归一化行熵减去归一化 Von Neumann 熵">
+                  <var>𝒯</var>(<var>A</var>) = Ĥ<sub>row</sub>(<var>A</var>) − Ĥ<sub>vN</sub>(ρ)
+                </div>
+                <div class="tension-scale" aria-label="Spectral Tension 的状态解释">
+                  <span class="tension-negative"><b>𝒯 &lt; 0</b> 🧩 碎片化</span>
+                  <span class="tension-balanced"><b>𝒯 ≈ 0</b> ⚖️ 平衡态</span>
+                  <span class="tension-positive"><b>𝒯 &gt; 0</b> 🌪️ 过度混合</span>
+                </div>
+              </article>
+
+              <article class="formula-card formula-card-wide correction-card">
+                <div class="formula-index">04</div>
+                <h3>Spectral Transport Homeostasis</h3>
+                <div class="equation-stack">
+                  <div class="equation"><var>α</var><sub>temp</sub> = 1 − mean(diag(<var>A</var>))</div>
+                  <div class="equation"><var>Q</var><sub>TST</sub> = <var>α</var><sub>temp</sub> · Ĥ<sub>vN</sub>(1 − Ĥ<sub>vN</sub>)</div>
+                  <div class="equation equation-wide"><var>τ</var><sub>eff</sub> = <var>τ</var> · <var>w</var><sub>layer</sub> · <var>w</var><sub>step</sub></div>
+                  <div class="equation equation-primary"><var>s</var><sub>TST</sub> = 1 + <var>τ</var><sub>eff</sub><var>Q</var><sub>TST</sub>, &nbsp; <var>Y</var><sup>′</sup> = <var>s</var><sub>TST</sub><var>Y</var></div>
+                </div>
+                <p>
+                  有效校正强度 <var>τ</var><sub>eff</sub> 会随 Transformer 层级与扩散时间步自动调度。整个干预轻量、自适应，仅由一个核心参数 <var>τ</var> 控制；论文推荐设置为 <strong>0.2</strong>。
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="text-section">
+          <div class="container narrow prose">
+            <h2>摘要</h2>
+            <p>
+              可靠的视频生成不仅需要高质量的单帧画面，还需要模型在时间维度持续传输身份、场景布局、运动和细粒度细节等视觉状态。现有无需训练的方法主要强化跨帧注意力或分析局部注意力熵，却无法判断时间交互是否处于健康的传输状态。本文从 Temporal State Transport 的视角重新研究视频生成中的时间一致性。
+            </p>
+            <p>
+              我们提出 Spectral Tension，通过比较局部注意力弥散度与全局谱多样性，对时间注意力进行带符号诊断，并识别两种方向相反的失效模式：碎片化传输与过度混合热点。在此基础上，我们提出 Spectral Transport Homeostasis，在尽可能保留平衡状态的同时，以无需训练的方式柔性校正异常时间状态。
+            </p>
+          </div>
+        </section>
+
+        <section class="claim-section" id="detail-realism">
+          <div class="container wide">
+            <div class="claim-header">
+              <h2>更忠实的细节与更丰富的真实结构</h2>
+              <p class="claim-description">
+                以下案例重点展示外观真实感、细粒度结构与场景细节如何在时间维度保持稳定，并呈现出更具说服力的视觉效果。
+              </p>
+            </div>
+            <div id="claim-a-grid" class="video-grid two-column"></div>
+          </div>
+        </section>
+
+        <section class="claim-section soft-band" id="physical-correction">
+          <div class="container wide">
+            <div class="claim-header">
+              <h2>更合理的物理结构与运动逻辑</h2>
+              <p class="claim-description">
+                以下动态场景中，原始模型容易产生不合理的物理行为；我们的方法能够恢复更加连贯、可信的时间结构。
+              </p>
+            </div>
+            <div id="claim-b-grid" class="video-grid two-column"></div>
+          </div>
+        </section>
+
+        <section class="citation-section" id="citation">
+          <div class="container narrow">
+            <div class="section-heading">
+              <p class="section-kicker">文献引用</p>
+              <h2>引用</h2>
+              <p>如果本研究对你的工作有所帮助，欢迎引用：</p>
+            </div>
+            <div class="citation-card">
+              <button class="copy-button" type="button" aria-label="复制 BibTeX 引用" data-default-label="复制 BibTeX" data-copied-label="已复制">复制 BibTeX</button>
+              <pre><code id="bibtex">@misc{tang2026temporalstatetransportvideo,
+  title={Temporal State Transport in Video Generation: Diagnosing and Correcting Spectral Imbalance},
+  author={Luyao Tang and Bingjun Luo and Dong Yi and Jialin Guo and Haoning Xi and Cheng Chen and Yizhou Yu and Chaoqi Chen},
+  year={2026},
+  eprint={2609.08505},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2609.08505},
+}</code></pre>
+              <p class="copy-status" role="status" aria-live="polite" data-copied-message="BibTeX 已复制到剪贴板。"></p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container narrow">
+          <p>Temporal State Transport · ICML 2026 F2S Workshop</p>
+        </div>
+      </footer>
+    </div>
+
+    <template id="video-card-template">
+      <article class="video-card">
+        <p class="prompt"></p>
+        <div class="watch-note">
+          <span class="watch-label">观察重点</span>
+          <p class="observation"></p>
+        </div>
+        <div class="compare-grid">
+          <div class="compare-cell">
+            <div class="compare-title">原始模型</div>
+            <video playsinline muted loop preload="metadata" controls></video>
+          </div>
+          <div class="compare-cell">
+            <div class="compare-title ours">我们的方法</div>
+            <video playsinline muted loop preload="metadata" controls></video>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="../script.js?v=20260908-3"></script>
+  </body>
+</html>

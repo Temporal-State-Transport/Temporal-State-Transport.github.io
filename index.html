@@ -14,18 +14,59 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="alternate" hreflang="zh-CN" href="zh/" />
+    <link rel="stylesheet" href="styles.css?v=20260908-3" />
   </head>
-  <body>
+  <body data-content-source="./data.json?v=20260908-3" data-asset-root=".">
     <div class="page">
       <header class="hero-block">
+        <nav class="language-switch" aria-label="Language selection">
+          <a class="active" href="./" lang="en" aria-current="page">EN</a>
+          <span aria-hidden="true"></span>
+          <a href="zh/" lang="zh-CN">中文</a>
+        </nav>
         <div class="container narrow">
+          <div class="award-showcase" aria-label="Best Paper Award and Oral Presentation at the ICML 2026 F2S Workshop">
+            <div class="award-emblem" aria-hidden="true">
+              <span class="award-spark">✦</span>
+              <span class="award-trophy">🏆</span>
+              <span class="award-spark">✦</span>
+            </div>
+            <div class="award-copy">
+              <span class="award-event">ICML 2026 · F2S Workshop</span>
+              <strong>Best Paper Award</strong>
+              <span class="award-oral"><span aria-hidden="true">🎤</span> Oral Presentation</span>
+            </div>
+          </div>
           <h1>Temporal State Transport in Video Generation</h1>
           <p class="subtitle">Diagnosing and Correcting Spectral Imbalance</p>
+          <div class="authors" aria-label="Paper authors">
+            <a class="author-link primary-author" href="https://lytang63.github.io/" target="_blank" rel="noopener noreferrer">Luyao Tang</a>,
+            <span>Bingjun Luo</span>,
+            <span>DONG Yi</span>,
+            <span>Jialin Guo</span>,
+            <span>Haoning Xi</span>,
+            <a class="author-link" href="https://cchen-cc.github.io/" target="_blank" rel="noopener noreferrer">Cheng Chen</a>,
+            <span>Yizhou Yu</span>,
+            <a class="author-link" href="https://scholar.google.com/citations?user=MmUZ_AQAAAAJ" target="_blank" rel="noopener noreferrer">Chaoqi Chen</a>
+          </div>
+          <p class="venue-line">ICML 2026 Workshop on From Frames to Stories (F2S)</p>
+          <div class="project-links" aria-label="Project resources">
+            <a class="project-link" href="https://openreview.net/pdf?id=YIqjb9fi7o" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">📄</span><span>Paper</span></a>
+            <a class="project-link" href="https://github.com/lytang63/temporal-state-transport" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">⌘</span><span>Code</span></a>
+            <a class="project-link" href="https://icml.cc/virtual/2026/76614" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">◈</span><span>ICML</span></a>
+            <a class="project-link" href="https://arxiv.org/abs/2609.08505" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span><span>arXiv</span></a>
+          </div>
           <p class="lede">
-            Reliable video generation requires more than strong individual frames. A model must transport identity, scene
-            layout, motion, and fine details across time without drifting into fragmented transport or over-mixing.
+            Temporal attention does not fail in just one direction: it can become <strong>fragmented</strong> or
+            <strong>over-mixed</strong>. TST is a training-free, diagnose-then-correct framework that restores balanced temporal
+            transport—improving coherence, visual detail, and physical plausibility without finetuning.
           </p>
+          <div class="hero-proof" aria-label="Method highlights">
+            <div class="proof-card fragmented"><span class="proof-icon" aria-hidden="true">🧩</span><strong>Fragmented Transport</strong><span>Frames become isolated; appearance and fine detail drift over time.</span></div>
+            <div class="proof-card balanced"><span class="proof-icon" aria-hidden="true">⚖️</span><strong>Balanced Transport</strong><span>The healthy regime preserves both cross-frame coherence and temporal distinction.</span></div>
+            <div class="proof-card over-mixed"><span class="proof-icon" aria-hidden="true">🌪️</span><strong>Over-mixed Transport</strong><span>Temporal distinctions collapse; motion and physical dynamics become implausible.</span></div>
+          </div>
         </div>
       </header>
 
@@ -39,6 +80,41 @@
               inference time. The result is improved temporal coherence, stronger visual quality, and more physically plausible
               videos without finetuning.
             </p>
+          </div>
+        </section>
+
+        <section class="core-insight-section">
+          <div class="container wide">
+            <div class="section-heading core-insight-heading">
+              <p class="section-kicker">💡 Core insight</p>
+              <h2>Temporal inconsistency is a balance problem.</h2>
+              <p>
+                More cross-frame interaction is not always better. Temporal attention can fail in two opposite directions, so a
+                useful intervention must first identify the failure regime and then apply the appropriate correction.
+              </p>
+            </div>
+            <div class="insight-flow" aria-label="TST diagnose-then-correct workflow">
+              <div class="insight-step">
+                <span class="insight-icon" aria-hidden="true">🔍</span>
+                <div><strong>Spectral Tension</strong><span>Diagnose the direction and severity of temporal imbalance.</span></div>
+              </div>
+              <span class="flow-arrow" aria-hidden="true">→</span>
+              <div class="insight-step">
+                <span class="insight-icon" aria-hidden="true">🧭</span>
+                <div><strong>Signed Decision</strong><span>Separate fragmented transport from over-mixing hotspots.</span></div>
+              </div>
+              <span class="flow-arrow" aria-hidden="true">→</span>
+              <div class="insight-step">
+                <span class="insight-icon" aria-hidden="true">🩺</span>
+                <div><strong>Homeostatic Correction</strong><span>Intervene selectively while preserving already-balanced states.</span></div>
+              </div>
+            </div>
+            <div class="keyword-row" aria-label="Core properties">
+              <span>⚡ Training-free</span>
+              <span>🔌 Plug-and-play</span>
+              <span>🎛️ One principal knob</span>
+              <span>🧠 Layer- and timestep-aware</span>
+            </div>
           </div>
         </section>
 
@@ -66,6 +142,81 @@
                 Spectral Transport Homeostasis is a training-free query-temperature regulator. It sharpens over-mixed states,
                 softens fragmented ones, and preserves already balanced transport as much as possible.
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="figure-section">
+          <div class="container narrow">
+            <figure class="insight-figure">
+              <a class="figure-link" href="assets/figs/concept.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open the full-resolution TST method diagram as a PDF">
+                <img src="assets/figs/concept-method.png" alt="TST diagnoses fragmented transport and over-mixing hotspots, then applies Spectral Transport Homeostasis to restore balanced temporal state transport." />
+              </a>
+              <figcaption>
+                <strong>The key insight.</strong> Healthy temporal transport lives between two pathologies. Spectral Tension
+                provides a signed signal that tells us not only <em>whether</em> attention is imbalanced, but also
+                <em>how</em> it should be corrected.
+                <a class="figure-download" href="assets/figs/concept.pdf" target="_blank" rel="noopener noreferrer">Open full-resolution PDF <span aria-hidden="true">↗</span></a>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="math-section">
+          <div class="container narrow">
+            <div class="section-heading math-heading">
+              <p class="section-kicker">🧮 Core formulation</p>
+              <h2>From spectral diagnosis to adaptive correction</h2>
+              <p>TST reads temporal attention at two complementary scales, determines the failure direction, and applies a scheduled correction at inference time.</p>
+            </div>
+
+            <div class="formula-grid">
+              <article class="formula-card">
+                <div class="formula-index">01</div>
+                <h3>Local diffuseness</h3>
+                <div class="equation" aria-label="Row entropy of attention A">
+                  <var>H</var><sub>row</sub>(<var>A</var>) = − avg<sub>i</sub> &Sigma;<sub>j</sub> <var>A</var><sub>ij</sub> log(<var>A</var><sub>ij</sub> + ε)
+                </div>
+                <p>Row entropy measures how diffusely each frame distributes its temporal attention.</p>
+              </article>
+
+              <article class="formula-card">
+                <div class="formula-index">02</div>
+                <h3>Global spectral diversity</h3>
+                <div class="equation" aria-label="Von Neumann entropy of rho">
+                  <var>H</var><sub>vN</sub>(ρ) = − &Sigma;<sub>k</sub> λ̃<sub>k</sub> log(λ̃<sub>k</sub> + ε)
+                </div>
+                <p>Von Neumann entropy summarizes the eigenvalue distribution of the normalized attention Gram matrix.</p>
+              </article>
+
+              <article class="formula-card formula-card-wide tension-card">
+                <div class="formula-index">03</div>
+                <h3>Spectral Tension: a signed diagnosis</h3>
+                <div class="equation equation-primary" aria-label="Spectral Tension equals normalized row entropy minus normalized Von Neumann entropy">
+                  <var>𝒯</var>(<var>A</var>) = Ĥ<sub>row</sub>(<var>A</var>) − Ĥ<sub>vN</sub>(ρ)
+                </div>
+                <div class="tension-scale" aria-label="Interpretation of Spectral Tension">
+                  <span class="tension-negative"><b>𝒯 &lt; 0</b> 🧩 Fragmented</span>
+                  <span class="tension-balanced"><b>𝒯 ≈ 0</b> ⚖️ Balanced</span>
+                  <span class="tension-positive"><b>𝒯 &gt; 0</b> 🌪️ Over-mixed</span>
+                </div>
+              </article>
+
+              <article class="formula-card formula-card-wide correction-card">
+                <div class="formula-index">04</div>
+                <h3>Spectral Transport Homeostasis</h3>
+                <div class="equation-stack">
+                  <div class="equation"><var>α</var><sub>temp</sub> = 1 − mean(diag(<var>A</var>))</div>
+                  <div class="equation"><var>Q</var><sub>TST</sub> = <var>α</var><sub>temp</sub> · Ĥ<sub>vN</sub>(1 − Ĥ<sub>vN</sub>)</div>
+                  <div class="equation equation-wide"><var>τ</var><sub>eff</sub> = <var>τ</var> · <var>w</var><sub>layer</sub> · <var>w</var><sub>step</sub></div>
+                  <div class="equation equation-primary"><var>s</var><sub>TST</sub> = 1 + <var>τ</var><sub>eff</sub><var>Q</var><sub>TST</sub>, &nbsp; <var>Y</var><sup>′</sup> = <var>s</var><sub>TST</sub><var>Y</var></div>
+                </div>
+                <p>
+                  The effective strength <var>τ</var><sub>eff</sub> is scheduled across transformer layers and diffusion steps.
+                  The intervention is lightweight, adaptive, and controlled by one main parameter, <var>τ</var>
+                  (<strong>0.2</strong> is the recommended paper setting).
+                </p>
+              </article>
             </div>
           </div>
         </section>
@@ -114,12 +265,45 @@
             <div id="claim-b-grid" class="video-grid two-column"></div>
           </div>
         </section>
+
+        <section class="citation-section" id="citation">
+          <div class="container narrow">
+            <div class="section-heading">
+              <p class="section-kicker">Reference</p>
+              <h2>Citation</h2>
+              <p>If this work is useful for your research, please cite:</p>
+            </div>
+            <div class="citation-card">
+              <button class="copy-button" type="button" aria-label="Copy BibTeX citation" data-default-label="Copy BibTeX" data-copied-label="Copied">Copy BibTeX</button>
+              <pre><code id="bibtex">@misc{tang2026temporalstatetransportvideo,
+  title={Temporal State Transport in Video Generation: Diagnosing and Correcting Spectral Imbalance},
+  author={Luyao Tang and Bingjun Luo and Dong Yi and Jialin Guo and Haoning Xi and Cheng Chen and Yizhou Yu and Chaoqi Chen},
+  year={2026},
+  eprint={2609.08505},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2609.08505},
+}</code></pre>
+              <p class="copy-status" role="status" aria-live="polite" data-copied-message="BibTeX copied to clipboard."></p>
+            </div>
+          </div>
+        </section>
       </main>
+
+      <footer class="site-footer">
+        <div class="container narrow">
+          <p>Temporal State Transport · ICML 2026 F2S Workshop</p>
+        </div>
+      </footer>
     </div>
 
     <template id="video-card-template">
       <article class="video-card">
         <p class="prompt"></p>
+        <div class="watch-note">
+          <span class="watch-label">What to watch</span>
+          <p class="observation"></p>
+        </div>
         <div class="compare-grid">
           <div class="compare-cell">
             <div class="compare-title">Original model</div>
@@ -133,6 +317,6 @@
       </article>
     </template>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260908-3"></script>
   </body>
 </html>
